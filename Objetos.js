@@ -15,8 +15,8 @@ function desenhaQuadrado(teste) {
 }
 
 var retangulo = {
-    x: 15,
-    y: 15,
+    x: 0,
+    y: 0,
     altura: 50,
     largura: 50,
     cor: "red"
@@ -51,19 +51,31 @@ function movimento_dowm() {
     // setTimeout(movimento(), 100000);
 }
 
-document.addEventListener("keydown", function(params) {
-    let tecla = params.key
+// document.addEventListener("keydown", function(params) {
+//     let tecla = params.key
 
-    if (tecla == "d"){
-        movimento_left()
-    }
-    if (tecla == "a"){
-        movimento_right()
-    }
-    if (tecla == "w"){
-        movimento_up()
-    }
-    if (tecla == "s"){
-        movimento_dowm()
-    }
+//     if (tecla == "d"){
+//         movimento_left()
+//     }
+//     if (tecla == "a"){
+//         movimento_right()
+//     }
+//     if (tecla == "w"){
+//         movimento_up()
+//     }
+//     if (tecla == "s"){
+//         movimento_dowm()
+//     }
+// }) Controlando com o teclado
+
+document.addEventListener("mousemove", function(params) {
+    rect = canvas.getBoundingClientRect();
+    x_mouse = params.clientX - rect.left;
+    y_mouse = params.clientY - rect.right;
+
+    retangulo.y = y_mouse;
+    desenhaQuadrado(retangulo);
+    retangulo.x = x_mouse;
+    ctx.clearRect(0,0,300,300);
+    desenhaQuadrado(retangulo);
 })
